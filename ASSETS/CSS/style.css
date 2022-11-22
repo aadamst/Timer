@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Yellowtail&display=swap');
+
+/* 
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Yellowtail', cursive; 
+*/
+
+:root {
+    --textColor: rgb(217, 224, 235);
+    --pageBG: rgb(38, 41, 46);
+    --active: rgb(152, 163, 177);
+    --btnBG: rgb(74, 81, 90);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--pageBG);
+    color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
+}
+
+.title {
+    font-size: 3rem;
+    margin: 20px 0px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+/* Pick Buttons Section */
+.pick-btns-contaier {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pick-btns {
+    display: inline-block;
+    background-color: rgb(74, 81, 90);
+    color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    width: 49%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    text-transform: lowercase;
+    transition: background-color 250ms;
+}
+
+.pick-btns:hover {
+    background-color: rgb(56, 60, 66);
+}
+
+#active {
+    background-color: var(--active);
+    color: var(--pageBG);
+    font-weight: 800;
+}
+
+/* Timer Section */
+
+#timer-BG {
+    background-color: rgb(28, 34, 44);
+    width: 95%;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 75px 5px rgba(0, 0, 0, 0.829);
+}
+
+.timer-flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 30px;
+}
+
+.unit-value {
+    font-size: 150px;
+    margin: 0px;
+}
+
+.unit {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 48
+}
+
+.arrow {
+    background-color: var(--active);
+    color: var(--pageBG);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-weight: 900;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
+#SW-timer {
+    display: none;
+}
+
+/* Container Sizing */
+@media (min-width: 576px){
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px){
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px){
+    .container{
+        max-width: 960px;
+    }
+    .title {
+        font-size: 5rem;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px){
+    .container {
+        max-width: 1320px;
+    }
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
