@@ -11,6 +11,7 @@ font-family: 'Yellowtail', cursive;
     --pageBG: rgb(38, 41, 46);
     --active: rgb(152, 163, 177);
     --btnBG: rgb(74, 81, 90);
+    --font: 'Poppins', sans-serif;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
     box-sizing: border-box;
     background: var(--pageBG);
     color: var(--textColor);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font);
 }
 
 .title {
@@ -31,21 +32,22 @@ body {
     text-align: center !important;
 }
 
-/* Pick Buttons Section */
-.pick-btns-contaier {
+/* Timer Type Section */
+.pick-btns-container {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .pick-btns {
     display: inline-block;
-    background-color: rgb(74, 81, 90);
+    background-color: rgb(56, 60, 66);
     color: var(--textColor);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font);
     font-size: 50px;
     width: 49%;
     padding: 10px;
+    margin: 10px auto;
     border-radius: 10px;
     border: none;
     text-transform: lowercase;
@@ -53,10 +55,16 @@ body {
 }
 
 .pick-btns:hover {
-    background-color: rgb(56, 60, 66);
+    background-color: rgb(74, 81, 90);
 }
 
-#active {
+.current {
+    background-color: var(--active);
+    color: var(--pageBG);
+    font-weight: 800;
+}
+
+.current:hover {
     background-color: var(--active);
     color: var(--pageBG);
     font-weight: 800;
@@ -69,7 +77,7 @@ body {
     width: 95%;
     padding: 30px;
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 10px auto;
     box-shadow: 0px 0px 75px 5px rgba(0, 0, 0, 0.829);
 }
 
@@ -115,9 +123,51 @@ body {
     margin: auto;
 }
 
-#SW-timer {
+.T-timer {
     display: none;
 }
+
+
+/* Add Time Section */
+.add-btns {
+    font-size: 30px;
+    width: 24%;
+}
+
+.add-btns:active {
+    background-color: rgb(111, 121, 133);
+}
+
+
+/* Timer Control Section */
+.start {
+    background-color: rgb(56, 66, 56);
+}
+
+.start:hover {
+    background-color: rgb(74, 90, 76);
+}
+
+.start:active {
+    background-color: rgb(111, 133, 115);
+}
+
+.reset:active {
+    background-color: rgb(111, 121, 133);
+}
+
+.timer-running {
+    border: 5px solid rgb(238, 73, 73);
+    background-color: transparent;
+    color: rgb(238, 73, 73);
+}
+
+.timer-running:hover {
+    border: 5px solid rgb(239, 39, 39);
+    background-color: transparent;
+    color: rgb(239, 39, 39);
+}
+
 
 /* Container Sizing */
 @media (min-width: 576px){
