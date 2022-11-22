@@ -121,6 +121,15 @@ body {
     text-align: center;
     align-items: center;
     margin: auto;
+    transition: all 250ms;
+}
+
+.arrow:hover {
+    background-color: rgb(177, 188, 205);
+}
+
+.arrow:active {
+    background-color: rgb(146, 178, 225);
 }
 
 .T-timer {
