@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Yellowtail&display=swap');
 
 /* 
 font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif;
-font-family: 'Yellowtail', cursive; 
+font-family: 'Yellowtail', cursive;
+font-family: 'Fragment Mono', monospace; 
 */
 
 :root {
@@ -12,6 +13,7 @@ font-family: 'Yellowtail', cursive;
     --active: rgb(152, 163, 177);
     --btnBG: rgb(74, 81, 90);
     --font: 'Poppins', sans-serif;
+    --numFont: 'Fragment Mono', monospace;
 }
 
 body {
@@ -51,11 +53,11 @@ body {
     border-radius: 10px;
     border: none;
     text-transform: lowercase;
-    transition: background-color 250ms;
+    transition: all 250ms;
 }
 
 .pick-btns:hover {
-    background-color: rgb(74, 81, 90);
+    background-color: rgb(46, 49, 54);
 }
 
 .current {
@@ -89,6 +91,7 @@ body {
 }
 
 .unit-value {
+    font-family: var(--numFont);
     font-size: 150px;
     margin: 0px;
 }
@@ -125,11 +128,11 @@ body {
 }
 
 .arrow:hover {
-    background-color: rgb(177, 188, 205);
+    background-color: rgb(112, 119, 129);
 }
 
 .arrow:active {
-    background-color: rgb(146, 178, 225);
+    transform: scale(0.9, 0.9);
 }
 
 .T-timer {
@@ -144,39 +147,34 @@ body {
 }
 
 .add-btns:active {
-    background-color: rgb(111, 121, 133);
+    transform: scale(0.95, 0.95);
 }
 
 
 /* Timer Control Section */
 .start {
-    background-color: rgb(56, 66, 56);
-}
-
-.start:hover {
     background-color: rgb(74, 90, 76);
 }
 
+.start:hover {
+    background-color: rgb(60, 71, 60);
+}
+
 .start:active {
-    background-color: rgb(111, 133, 115);
+    transform: scale(0.95, 0.95);
 }
 
 .reset:active {
-    background-color: rgb(111, 121, 133);
+    transform: scale(0.95, 0.95);
 }
 
-.timer-running {
-    border: 5px solid rgb(238, 73, 73);
-    background-color: transparent;
-    color: rgb(238, 73, 73);
+.stop {
+    background-color: rgb(221, 90, 90);
 }
 
-.timer-running:hover {
-    border: 5px solid rgb(239, 39, 39);
-    background-color: transparent;
-    color: rgb(239, 39, 39);
+.stop:hover {
+    background-color: rgb(168, 73, 73);
 }
-
 
 /* Container Sizing */
 @media (min-width: 576px){
