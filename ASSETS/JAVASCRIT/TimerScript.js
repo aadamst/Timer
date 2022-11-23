@@ -37,7 +37,6 @@ SWButton.addEventListener('click', function(){
     addBtns.style.display = ('none');
     SWAttr.style.display = ('flex');
     isStopwatch = true;
-    console.log('Stopwatch');
     reset();
 });
 
@@ -46,7 +45,6 @@ TButton.addEventListener('click', function(){
     addBtns.style.display = ('flex');
     SWAttr.style.display = ('none');
     isStopwatch = false;
-    console.log('timer');
     reset();
 });
 
@@ -57,8 +55,8 @@ document.querySelectorAll('input[type="Number"]').forEach(input =>{
 });
 
 
-//Update the timer
-function timer(){
+//Update the stopwatch
+function stopwatch(){
     centiSeconds++;
 
     //Format the time
@@ -78,6 +76,7 @@ function timer(){
     unit_value[3].innerText = `${centi}`;
 }
 
+// Start/Stop stopwatch/timer
 function startStop(){
     if (isCounting === false){
         start();
@@ -91,7 +90,7 @@ function start(){
     isCounting = true;
     start_btn.classList.add('stop');
     start_btn.innerText = 'stop';
-    interval = setInterval(timer, 10);
+    interval = setInterval(stopwatch, 10);
 }
 
 function stop(){
@@ -109,4 +108,7 @@ function reset(){
     unit_value[1].innerText = '00';
     unit_value[2].innerText = '00';
     unit_value[3].innerText = '00';
+    unit_value[4].innerText = '00';
+    unit_value[5].innerText = '00';
+    unit_value[6].innerText = '00';
 }
