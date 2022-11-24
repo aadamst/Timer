@@ -4,6 +4,7 @@ const reset_btn = document.getElementById('reset');
 const unit_value = document.querySelectorAll('.unit-value');
 const add_btns = document.querySelectorAll('.add-btns');
 const arrows = document.querySelectorAll('.arrow');
+const Alarm = new Audio('/ASSETS/SOUNDS/Alarm.wav');
 
 let centiSeconds = 0;
 let interval = null;
@@ -94,6 +95,7 @@ function stopwatch(){
 function timer(){
     if(centiSeconds <= 0){
         stop();
+        playAlarm();
         // Adds flash animation to unit values when timer hits 0
         addAnim();
     }
@@ -175,6 +177,7 @@ function stop(){
 function reset(){
     console.clear();
     stop();
+    stopAlarm();
     centiSeconds = 0;
 
     // Reset all unit values to '00'
@@ -210,6 +213,18 @@ function removeAnim(){
     unit_value.forEach(unitValue => {
         unitValue.classList.remove('flash')
     })
+}
+
+// Plays Alarm Sound
+function playAlarm(){
+    Alarm.play();
+    Alarm.loop = true;
+}
+
+// Stops Alarm Sound
+function stopAlarm(){
+    Alarm.pause();
+    Alarm.currentTime = 0;
 }
 
 // Add time to timer
