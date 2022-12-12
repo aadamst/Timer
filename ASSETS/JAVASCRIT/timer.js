@@ -54,6 +54,7 @@ stopwatch_btn.addEventListener('click', function(){
 
     stopwatch_btn.setAttribute('disabled', true);
     timer_btn.removeAttribute('disabled');
+    document.title = 'Stopwatch';
 
     enable();
 
@@ -73,17 +74,11 @@ timer_btn.addEventListener('click', function(){
 
     timer_btn.setAttribute('disabled', true);
     stopwatch_btn.removeAttribute('disabled');
+    document.title = 'Timer';
 
     reset();
     
 });
-
-document.querySelectorAll('input[type="Number"]').forEach(input =>{
-    input.oninput = () =>{
-        if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
-    };
-});
-
 
 // Update the stopwatch
 function stopwatch(){
