@@ -4,6 +4,7 @@ const reset_btn = document.getElementById('reset');
 const unit_value = document.querySelectorAll('.unit-value');
 const add_btns = document.querySelectorAll('.add-btns');
 const arrows = document.querySelectorAll('.arrow');
+const date = document.getElementById('date')
 const Alarm = new Audio('/ASSETS/SOUNDS/Alarm.wav');
 
 let centiSeconds = 0;
@@ -13,12 +14,17 @@ let seconds = 0;
 let interval = null;
 let isCounting = false;
 let isStopwatch = true;
+let isCountdown = false;
 let centi_Check = null;
+let date_Check = null;
+date.value = "";
 
 var stopwatch_btn = document.querySelector('.stopwatch');
 var timer_btn = document.querySelector('.timer');
-var timer_clock = document.querySelectorAll('.T-timer');
+var countdown_btn = document.querySelector('.countdown');
 var stopwatch_clock = document.querySelector('.SW-timer');
+var timer_clock = document.querySelectorAll('.T-timer');
+var countdown_clock = document.querySelectorAll('.CD-timer');
 var types = document.querySelectorAll('.type button');
 
 // Adds 'current' class to clicked button
@@ -46,14 +52,22 @@ stopwatch_btn.addEventListener('click', function(){
     timer_clock.forEach(Ttimer => {
         Ttimer.style.display = ('none');
     });
-
+    countdown_clock.forEach(Ccountdown => {
+        Ccountdown.style.display = ('none');
+    });
     stopwatch_clock.style.display = ('flex');
+
     isStopwatch = true;
+    isCountdown = false;
+
     clearInterval(centi_Check);
     centi_Check = null;
+    clearInterval(date_Check);
+    date_Check = null;
 
     stopwatch_btn.setAttribute('disabled', true);
     timer_btn.removeAttribute('disabled');
+    countdown_btn.removeAttribute('disabled');
     document.title = 'Stopwatch';
 
     enable();
@@ -67,14 +81,49 @@ timer_btn.addEventListener('click', function(){
     timer_clock.forEach(Ttimer => {
         Ttimer.style.display = ('flex');
     });
-
+    countdown_clock.forEach(Ccountdown => {
+        Ccountdown.style.display = ('none');
+    });
     stopwatch_clock.style.display = ('none');
-    isStopwatch = false
+
+    isStopwatch = false;
+    isCountdown = false;
+
+    clearInterval(date_Check);
+    date_Check = null;
     centi_Check = setInterval(centiCheck, 1);
 
     timer_btn.setAttribute('disabled', true);
     stopwatch_btn.removeAttribute('disabled');
+    countdown_btn.removeAttribute('disabled');
     document.title = 'Timer';
+
+    reset();
+    
+});
+
+// Set clock to countdown mode
+countdown_btn.addEventListener('click', function(){
+
+    timer_clock.forEach(Ttimer => {
+        Ttimer.style.display = ('none');
+    });
+    countdown_clock.forEach(Ccountdown => {
+        Ccountdown.style.display = ('flex');
+    });
+    stopwatch_clock.style.display = ('none');
+
+    isStopwatch = false;
+    isCountdown = true;
+
+    clearInterval(centi_Check);
+    centi_Check = null;
+    date_Check = setInterval(dateCheck, 1);
+
+    countdown_btn.setAttribute('disabled', true);
+    stopwatch_btn.removeAttribute('disabled');
+    timer_btn.removeAttribute('disabled');
+    document.title = 'Countdown';
 
     reset();
     
@@ -103,6 +152,20 @@ function timer(){
         start_btn.classList.add('pause');
         start_btn.innerText = 'pause';
         timerCalc();
+    }
+}
+
+// Update the countdown
+function countdown(){
+    if (date.value != "" && timeDifference() > 0){
+        isCounting = true;
+        countdownCalc();
+    } 
+    else {
+        stop();
+        playAlarm();
+        // Adds flash animation to unit values when timer hits 0
+        addAnim();
     }
 }
 
@@ -148,6 +211,37 @@ function timerCalc(){
     formatTimer();
 }
 
+// Getting difference between current date and selected date
+function timeDifference(){
+    const tc = new Date();
+    const tf = new Date(date.value);
+    const deltaT = tf - tc;
+
+    return deltaT;
+}
+
+// Calculate countdown
+function countdownCalc(){
+    let daysCalc = timeDifference() / (1000 * 60 * 60 * 24);
+    let days = Math.floor(daysCalc);
+    let hrsCalc = (daysCalc - days) * 24;
+    let hrs = Math.floor(hrsCalc);
+    let minsCalc = (hrsCalc - hrs) * 60;
+    let mins = Math.floor(minsCalc);
+    let secsCalc = (minsCalc - mins) * 60;
+    let secs = Math.floor(secsCalc);
+
+    if (secs < 10) secs = '0' + secs;
+    if (mins < 10) mins = '0' + mins;
+    if (hrs < 10) hrs = '0' + hrs;
+    if (days < 10) days = '0' + days;
+
+    unit_value[7].innerText = `${days}`;
+    unit_value[8].innerText = `${hrs}`;
+    unit_value[9].innerText = `${mins}`;
+    unit_value[10].innerText = `${secs}`;
+}
+
 // Format timer
 function formatTimer() {
     if (seconds < 10) unit_value[6].innerText = '0' + seconds;
@@ -160,7 +254,7 @@ function formatTimer() {
     if (hours >= 10) unit_value[4].innerText = hours;
 }
 
-// Checking centisecond value
+// Checking time value
 function centiCheck(){
     if (seconds >= 1 || minuets >= 1 || hours >= 1){
         enable();
@@ -170,7 +264,18 @@ function centiCheck(){
     }
 }
 
-// Start/Stop stopwatch/timer
+// Checking date value
+function dateCheck(){
+
+    if (date.value != "" && timeDifference() > 0){
+        enable();
+    } 
+    else {
+        disable();
+    }
+}
+
+// Start/Stop clock
 function startStop(){
     if (isCounting === false){
         start();
@@ -184,6 +289,11 @@ function startStop(){
 function start(){
     if (isStopwatch === true){
         interval = setInterval(stopwatch, 10);
+    }
+    else if (isCountdown === true) {
+        interval = setInterval(countdown, 1000);
+        start_btn.classList.add('pause');
+        start_btn.innerText = 'pause';
     }
     else {
         interval = setInterval(timer, 1000);
@@ -210,6 +320,8 @@ function reset(){
     seconds = 0;
     minuets = 0;
     hours = 0;
+
+    date.value = "";
 
     // Reset all unit values to '00'
     unit_value.forEach(unitValue => {
