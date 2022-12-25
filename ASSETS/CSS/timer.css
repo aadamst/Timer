@@ -178,7 +178,7 @@ input[type="date"]{
     padding: 10px 50px;
     background: rgba(0, 0, 0, 0.288);
     color: var(--textColor);
-    font-family: var(--font);
+    font-family: var(--numFont);
     font-size: 50px;
     border-radius: 10px;
     width: 32%;
