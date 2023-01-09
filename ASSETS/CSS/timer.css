@@ -40,6 +40,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .pick-btns {
@@ -57,6 +58,10 @@ body {
     cursor: pointer;
     transition: all 250ms;
     user-select: none;
+}
+
+.width {
+    width: 99%;
 }
 
 .pick-btns:hover {
@@ -140,7 +145,7 @@ body {
     transform: scale(0.9, 0.9);
 }
 
-.T-timer {
+.T-timer, .CD-timer {
     display: none;
 }
 
@@ -155,6 +160,34 @@ body {
     transform: scale(0.95, 0.95);
 }
 
+
+/* Date Select Section */
+.date-select-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    margin: 0px;
+}
+
+input[type="date"]{
+    border: none;
+    outline: none;
+
+    color-scheme: dark;
+    padding: 10px 50px;
+    background: rgba(0, 0, 0, 0.288);
+    color: var(--textColor);
+    font-family: var(--numFont);
+    font-size: 50px;
+    border-radius: 10px;
+    width: 32%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(90%) sepia(11%) saturate(194%) hue-rotate(177deg) brightness(101%) contrast(86%);
+}
 
 /* Timer Control Section */
 .start {
