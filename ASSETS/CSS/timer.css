@@ -186,7 +186,11 @@ input[type="date"]{
 
 input[type="date"]::-webkit-calendar-picker-indicator{
     cursor: pointer;
+<<<<<<< HEAD
     filter: brightness(0) saturate(100%) invert(90%) sepia(11%) saturate(194%) hue-rotate(177deg) brightness(101%) contrast(86%);
+=======
+    filter: sepia() saturate(1000%) hue-rotate(177deg);
+>>>>>>> b46c7c3f91b68b51f6f711c8530b1d6d62531976
 }
 
 /* Timer Control Section */
