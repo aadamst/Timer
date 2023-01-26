@@ -5,7 +5,7 @@ const unit_value = document.querySelectorAll('.unit-value');
 const add_btns = document.querySelectorAll('.add-btns');
 const arrows = document.querySelectorAll('.arrow');
 const date = document.getElementById('date')
-const Alarm = new Audio('./SOUNDS/Alarm.wav');
+const Alarm = new Audio('/SOUNDS/Alarm.wav');
 
 let centiSeconds = 0;
 let hours = 0;
